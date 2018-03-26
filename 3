@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+    <HEAD>
+    <TITLE>Затрак</TITLE>
+    </HEAD>
+<BODY>
+<script type="text/javascript">
+function breakfast(eat){
+this.eat = eat;
+}
+
+breakfast.prototype.toString = function(){
+return 'На завтрак: ' + this.eat + '.'};
+
+function indigrienta(eat){
+breakfast.call(this, eat);
+var indig = [];
+this.indig = indig;
+}
+
+indigrienta.prototype = Object.create(breakfast.prototype);
+indigrienta.prototype.constructor = indigrienta;
+
+indigrienta.prototype.addIndig = function(ind){
+this.indig.push(ind);
+}
+
+indigrienta.prototype.toString = function(){
+return this.eat + ' Индигренты: ' + this.indig + '.';
+}
+
+c = new breakfast("Сэндвич");
+k = new indigrienta(c);
+k.addIndig("Хлеб");
+k.addIndig("Cыр");
+k.addIndig("Мясо");
+k.addIndig("Соус");
+console.log(c);
+console.log(k);
+console.log(k.toString());
+</script>
+</BODY>
+</HTML>
